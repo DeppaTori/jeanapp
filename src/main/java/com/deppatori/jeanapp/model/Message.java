@@ -1,7 +1,6 @@
 package com.deppatori.jeanapp.model;
 
 
-
 public class Message {
     private String text;
 
