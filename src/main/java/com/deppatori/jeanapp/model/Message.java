@@ -1,6 +1,5 @@
 package com.deppatori.jeanapp.model;
 
-import javax.persistence.Entity;
 
 
 public class Message {
