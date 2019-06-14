@@ -11,6 +11,6 @@ public class HomeController {
 
     @GetMapping
     public Message index(){
-        return new Message("Hello Jean!");
+        return new Message("Hello Jean! It's wonderful day! ");
     }
 }
