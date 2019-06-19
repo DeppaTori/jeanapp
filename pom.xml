@@ -17,6 +17,15 @@
 	<properties>
 		<java.version>1.8</java.version>
 
+		<!-- Sonar configuration -->
+		<jacoco.report.ut>${project.build.directory}/jacoco-ut.exec</jacoco.report.ut>
+		<jacoco.report.it>${project.build.directory}/jacoco-it.exec</jacoco.report.it>
+
+		<sonar.language>java</sonar.language>
+		<sonar.sources>src/main/java</sonar.sources>
+		<sonar.tests>src/test/java</sonar.tests>
+		<sonar.junit.reportPaths>${project.build.directory}/surefire-reports</sonar.junit.reportPaths>
+		<sonar.jacoco.reportPaths>${jacoco.report.ut},${jacoco.report.it}</sonar.jacoco.reportPaths>
 
 	</properties>
 
@@ -47,6 +56,26 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<!-- attached to Maven test phase -->
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>
