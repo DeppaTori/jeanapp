@@ -16,9 +16,12 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<jacoco.report.ut>${project.build.directory}/jacoco-ut.exec</jacoco.report.ut>
+		<jacoco.report.it>${project.build.directory}/jacoco-it.exec</jacoco.report.it>
 		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.jacoco.reportPaths>${jacoco.report.ut},${jacoco.report.it}</sonar.jacoco.reportPaths>
 		<sonar.language>java</sonar.language>
+
 	</properties>
 
 	<dependencies>
@@ -52,22 +55,27 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.2.201409121644</version>
-				<configuration>
-					<append>true</append>
-				</configuration>
+				<version>0.8.1</version>
 				<executions>
 					<execution>
+						<id>jacoco-agent-ut</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
+						<configuration>
+							<destFile>${jacoco.report.ut}</destFile>
+							<propertyName>surefireArgLine</propertyName>
+						</configuration>
 					</execution>
 					<execution>
-						<id>post-unit-test</id>
-						<phase>test</phase>
+						<id>jacoco-agent-it</id>
 						<goals>
-							<goal>report</goal>
+							<goal>prepare-agent-integration</goal>
 						</goals>
+						<configuration>
+							<destFile>${jacoco.report.it}</destFile>
+							<propertyName>failsafeArgLine</propertyName>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
