@@ -4,6 +4,10 @@ package com.deppatori.jeanapp.model;
 public class Message {
     private String text;
 
+    public Message(){
+
+    }
+
     public Message(String text) {
         this.text = text;
     }
