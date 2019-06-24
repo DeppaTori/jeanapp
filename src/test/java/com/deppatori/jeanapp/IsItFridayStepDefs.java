@@ -13,7 +13,7 @@ class IsItFriday {
     }
 }
 
-public class IsItFridayStepDefs extends  CucumberStepDefinitions {
+public class IsItFridayStepDefs {
 
     private String today;
     private String actualAnswer;
